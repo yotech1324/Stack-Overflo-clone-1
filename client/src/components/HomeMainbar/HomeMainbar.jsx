@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom'
 
 import './HomeMainbar.css'
+// import Questions from './Questions';
+import QuestionList from './QuestionList';
 
 const HomeMainbar = () => {
 
@@ -40,23 +42,26 @@ const HomeMainbar = () => {
         <div className='main-bar'>
 
             <div className="main-bar-header">
-              {
-                location.pathname === '/' ? <h1>Top Questions</h1> : <h1>All Questions</h1>
-              }
-              
-              <Link to='/AskQuestion' className='ask-btn'>Ask Question</Link>
-        </div>
+                {
+                    location.pathname === '/' ? <h1>Top Questions</h1> : <h1>All Questions</h1>
+                }
 
-    <div>
-        {
-            questionList === null ?
-            <h1>Loading...</h1> :
-            <>
-            <p>{ questionList.length } questions</p>
-            </>
-        }
-    </div>
-</div>
+                <Link to='/AskQuestion' className='ask-btn'>Ask Question</Link>
+            </div>
+
+            <div>
+                {
+                    questionList === null ?
+                        <h1>Loading...</h1> :
+                        <>
+                            <p>{questionList.length} questions</p>
+
+                            <QuestionList questionList={questionList} />
+
+                        </>
+                }
+            </div>
+        </div>
     )
 }
 

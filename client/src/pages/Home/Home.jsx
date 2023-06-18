@@ -8,16 +8,18 @@ import RightSidebar from '../../components/RightSidebar/RightSidebar';
 
 const Home = () => {
 
-return (
+    return (
 
 <div className='home-container-1'>
     <LeftSidebar />
-    <div className="home-container-2">
-        <HomeMainbar />
+      
+       
+    <div className="home-container-2" >
+          <HomeMainbar />
         <RightSidebar />
-    </div>
+    </div >
+</div >
      
-</div>
 
 )
 }
