@@ -27,6 +27,8 @@
 }
 
 .nav-item {
+    display: flex;
+    justify-content: center;
     margin: 0px 3px;
     font-size: small;
     font-weight: 500;
