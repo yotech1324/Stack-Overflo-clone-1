@@ -2,15 +2,47 @@ import React, { useState } from 'react';
 import './Auth.css'
 import icon from '../../assets/icon.png'
 import AboutAuth from './AboutAuth';
+import { signup, login } from '../../actions/auth';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
+
 
 const Auth = () => {
 
     const [isSignup, setIsSignup] = useState(false)
+    const [name, setName] = useState('')  
+    const [email, setEmail] = useState('')  
+    const [password, setPassword] = useState('')  
+
+    const dispatch = useDispatch()
+    const navigate =  useNavigate()
+
 
     const handleSwitch = () => {
 
         setIsSignup(!isSignup)
     }
+
+
+
+    const handleSubmit = (e) =>{
+e.preventDefault() 
+
+if(!email && !password){
+    alert("enter email and password")
+}
+
+if(isSignup){
+    if(!name){
+        alert("enter your name")
+    }
+   dispatch( signup({name, email,password} , navigate))
+}else{
+    dispatch( login({email, password}, navigate))
+}
+    }
+
+
     return (
 
 
@@ -21,19 +53,19 @@ const Auth = () => {
 
 
                 {!isSignup && <img src={icon} alt="stack overflow" className='login-logo' />}
-                <form >
+                <form onSubmit={handleSubmit} >
                     {
                         isSignup && (
-                            <label htmlFor='name'>
+                            <label htmlFor='Name'>
                                 <h4>Display Name</h4>
-                                <input type="text" name='name' id='name' />
+                                <input type="text" name='Name' id='name' onChange={(e) => {setName(e.target.value)}} />
                             </label>
                         )
                     }
 
                     <label htmlFor="email">
                         <h4>Email</h4>
-                        <input type="email" name='email' id='email' />
+                        <input type="email" name='email' id='email' onChange={(e) => {setEmail(e.target.value)}}  />
                     </label>
 
                     <label htmlFor="password">
@@ -41,7 +73,7 @@ const Auth = () => {
                             <h4>Password</h4>
                             {!isSignup && <p style={{ color: "#007ac6", fontSize: "13px" }}>forgot password</p>}
                         </div>
-                        <input type="password" name='password' id='password' />
+                        <input type="password" name='password' id='password' onChange={(e) => {setPassword(e.target.value)}} />
 
                         {isSignup && <p style={{ color: "#666767", fontSize: "13px" }}>Password must contain at least eaight <br />characters, including at least 1 letter and 1 <br />number </p>}
                     </label>
