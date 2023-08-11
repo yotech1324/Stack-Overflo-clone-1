@@ -3,6 +3,8 @@ import mongoose from "mongoose";
 import cors from 'cors'
 
 import userRoutes from './routes/users.js'
+import questionRoutes from './routes/Questions.js'
+
 
 const app = express();
 
@@ -15,6 +17,7 @@ app.get('/',(req, res) =>{
 })
 
 app.use('/user',userRoutes)
+app.use('/questions',questionRoutes)
 
 
 const CONNECTION_URL = "mongodb+srv://ysahu2539:Ysahu1324@stack-overflow-clone.w2rniqc.mongodb.net/?retryWrites=true&w=majority"

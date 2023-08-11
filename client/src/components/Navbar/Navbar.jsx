@@ -1,16 +1,26 @@
-import React from "react";
+import React , { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css"
-
+import { useSelector , useDispatch } from 'react-redux'
 
 import logo from "../../assets/logo.png"
 import search from "../../assets/search-solid.svg"
 import Avatar from "../../components/Avatar/Avatar"
+import { setCurrnetUser } from "../../actions/currentUser";
 
 const Navbar = () => {
-    var User = null;
+var User = useSelector((state) => (state.currentUserReducer))
+const dispatch = useDispatch()
 
-     return (
+useEffect( () => {
+    dispatch(setCurrnetUser(JSON.parse(localStorage.getItem('profile'))))
+}, [dispatch])
+
+
+
+
+
+return (
     
        <nav className="main-nav">
             <div className="navbar">
@@ -31,7 +41,7 @@ const Navbar = () => {
                     {User === null ?
                         <Link to="/Auth" className="nav-item nav-links">Log In</Link>
                         : <>
-                            <Avatar   backgroundColor="#009dff" px='10px' py = '7px' borderRadius='50%'   ><Link to="/User" style={{ color : 'white' , textDecoration:'none' }}  >Y</Link></Avatar>
+                            <Avatar   backgroundColor="#009dff" px='10px'  py = '7px' borderRadius='50%'  ><Link to="/User" style={{ color : 'white' , textDecoration:'none' }}  >Y</Link></Avatar>
 
                             <button  className="nav-item nav-links">Log Out</button>
 
