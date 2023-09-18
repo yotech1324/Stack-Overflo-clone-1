@@ -1,6 +1,9 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 import users from '../models/auth.js'
 
 // for sign up
@@ -13,7 +16,7 @@ if(existinguser){
 }
 const hashedPassword = await bcrypt.hash(password, 12)
 const newUser = await users.create({name , email, password: hashedPassword})
-const token = jwt.sign({ email: newUser.email , id: newUser._id} , "test", {expiresIn:'1h'});
+const token = jwt.sign({ email: newUser.email , id: newUser._id} , process.env.JWT_SECRET , {expiresIn:'1h'});
 res.status(200).json({ result:newUser, token})
 } catch(error){
     res.status(500).json("something went wrong...")
@@ -35,7 +38,7 @@ const isPasswordCrt = await bcrypt.compare(password , existinguser.password)
             return res.status(400).json({message : "Invalid credentials"})
         }
 
-        const token = jwt.sign({ email: existinguser.email , id: existinguser._id} , "test", {expiresIn:'1h'});
+        const token = jwt.sign({ email: existinguser.email , id: existinguser._id} ,  process.env.JWT_SECRET , {expiresIn:'1h'});
         res.status(200).json({ result:existinguser, token})           
 
      } catch(error) {

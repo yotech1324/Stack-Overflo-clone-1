@@ -171,7 +171,7 @@ const handleDownVote = () => {
                                                         </div>
                                                         <div>
                                                             <p>asked {moment(question.askedOn).fromNow()}</p>
-                                                            <Link to={`/user/${question.userId}`} className='user-link' style={{ color: '#0086d8' }}>
+                                                            <Link to={`/users/${question.userId}`} className='user-link' style={{ color: '#0086d8' }}>
                                                                 <Avatar backgroundColor="orange" px='8px' py='5px'>{question.userPosted.charAt(0).toUpperCase()}</Avatar>
                                                                 <div>
                                                                     {question.userPosted}
