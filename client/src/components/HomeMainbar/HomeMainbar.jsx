@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
+import  { useSelector }  from 'react-redux'
 
 import './HomeMainbar.css'
 // import Questions from './Questions';
@@ -19,69 +20,73 @@ const HomeMainbar = () => {
             navigate('/AskQuestion')
         }
     }
-    
-    var questionList = [{
-        _id: '1',
-        upVotes: 2,
-        downVotes: 2,
-        noOfAnswers: 4,
-        questionTitle: "what is a function?",
-        questionBody: "It meantto be",
-        questionTags: ["java", "javascript", "node.js", "mongodb", "react js"],
-        userPosted: "mano",
-        askedOn: "jan 1",
-        userId: 1,
-        answer:[{
-            _id: '1',
-            answerBody: "Answer",
-            userAnswered: "kumar",
-            answeredOn: "jan 2",
-            userId: 2,
-        }
-        ,{
-            _id: '3',
-            answerBody: "Answer",
-            userAnswered: 'kumar',
-            answeredOn: "jan 2",
-            userId: 2,
-        }
-    ]}, {
-        _id: '2',
-        upVotes: 4,
-        downVotes: 2,
-        noOfAnswers: 1,
-        questionTitle: "what is a function?",
-        questionBody: "It meantto be",
-        questionTags: ["java", "javascript", "python",],
-        userPosted: "mano",
-        askedOn: "jan 1",
-        userId: 2,
-        answer: [{
-            _id: '2',
-            answerBody: "Answer",
-            userAnswered: 'kumar',
-            answeredOn: "jan 2",
-            userId: 2,
-        }
-        ]}, {
-        _id: '3',
-        upVotes: 1,
-        downVotes: 2,
-        noOfAnswers: 3,
-        questionTitle: "what is a function?",
-        questionBody: "It meantto be",
-        questionTags: ["java", "mongodb", "react js"],
-        userPosted: "mano",
-        askedOn: "jan 1",
-        userId: 3,
-        answer: [{
-            _id: '3',
-            answerBody: "Answer",
-            userAnswered: 'kumar',
-            answeredOn: "jan 2",
-            userId: 2,
-        }]
-    }]
+
+
+    const questionList = useSelector(state => state.questionsReducer)
+    // console.log(questionList)
+
+    // var questionList = [{
+    //     _id: '1',
+    //     upVotes: 2,
+    //     downVotes: 2,
+    //     noOfAnswers: 4,
+    //     questionTitle: "what is a function?",
+    //     questionBody: "It meantto be",
+    //     questionTags: ["java", "javascript", "node.js", "mongodb", "react js"],
+    //     userPosted: "mano",
+    //     askedOn: "jan 1",
+    //     userId: 1,
+    //     answer:[{
+    //         _id: '1',
+    //         answerBody: "Answer",
+    //         userAnswered: "kumar",
+    //         answeredOn: "jan 2",
+    //         userId: 2,
+    //     }
+    //     ,{
+    //         _id: '3',
+    //         answerBody: "Answer",
+    //         userAnswered: 'kumar',
+    //         answeredOn: "jan 2",
+    //         userId: 2,
+    //     }
+    // ]}, {
+    //     _id: '2',
+    //     upVotes: 4,
+    //     downVotes: 2,
+    //     noOfAnswers: 1,
+    //     questionTitle: "what is a function?",
+    //     questionBody: "It meantto be",
+    //     questionTags: ["java", "javascript", "python",],
+    //     userPosted: "mano",
+    //     askedOn: "jan 1",
+    //     userId: 2,
+    //     answer: [{
+    //         _id: '2',
+    //         answerBody: "Answer",
+    //         userAnswered: 'kumar',
+    //         answeredOn: "jan 2",
+    //         userId: 2,
+    //     }
+    //     ]}, {
+    //     _id: '3',
+    //     upVotes: 1,
+    //     downVotes: 2,
+    //     noOfAnswers: 3,
+    //     questionTitle: "what is a function?",
+    //     questionBody: "It meantto be",
+    //     questionTags: ["java", "mongodb", "react js"],
+    //     userPosted: "mano",
+    //     askedOn: "jan 1",
+    //     userId: 3,
+    //     answer: [{
+    //         _id: '3',
+    //         answerBody: "Answer",
+    //         userAnswered: 'kumar',
+    //         answeredOn: "jan 2",
+    //         userId: 2,
+    //     }]
+    // }]
 
     return (
 
@@ -97,12 +102,12 @@ const HomeMainbar = () => {
 
             <div>
                 {
-                    questionList === null ?
+                    questionList.data === null ?
                         <h1>Loading...</h1> :
                         <>
-                            <p>{questionList.length} questions</p>
+                            <p>{questionList.data.length} questions</p>
 
-                            <QuestionList questionList={questionList} />
+                            <QuestionList questionList={questionList.data} />
 
                         </>
                 }

@@ -17,18 +17,15 @@ const AskQuestion = () => {
     const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        dispatch(askquestion({ questionTitle, questionBody, questionTags, userPosted: User.result.name }, navigate))
-
-
+        dispatch( askquestion( { questionTitle, questionBody, questionTags, userPosted: User.result.name, userId : User?.result?._id } , navigate ))
     }
 
     const handleEnter = (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter'){
             setQuestionBody(questionBody + "\n")
         }
     }
-
+    
     return (
         <div className="ask-question">
             <div className="ask-ques-container">
