@@ -82,10 +82,8 @@ const QuestionDetails = () => {
     const Navigate = useNavigate()
     const dispatch = useDispatch()
     const Location = useLocation()
-    const url = 'http://localhost:3000'
+    const url = 'https://stack-overflow-y.netlify.app'
     const User = useSelector((state) => (state.currentUserReducer))
-    
-    
     const handlePostAns = (e, answerLength) => {
         e.preventDefault()
 

@@ -17,7 +17,13 @@ const AskQuestion = () => {
     const navigate = useNavigate()
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch( askquestion( { questionTitle, questionBody, questionTags, userPosted: User.result.name, userId : User?.result?._id } , navigate ))
+        if (User === null) {
+            alert("LogIn or SignUp to ask a question ")
+            navigate('/Auth')
+            
+        }else{
+            dispatch( askquestion( { questionTitle, questionBody, questionTags, userPosted: User.result.name, userId : User?.result?._id } , navigate ))
+        }
     }
 
     const handleEnter = (e) => {
