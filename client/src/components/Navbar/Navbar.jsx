@@ -14,6 +14,15 @@ var User = useSelector((state) => (state.currentUserReducer))
 const dispatch = useDispatch()
 const navigate = useNavigate()
 
+
+const handleLogout = () => {
+    dispatch({type : 'LOGOUT'})
+navigate('/')
+dispatch(setCurrnetUser(null))
+}
+
+
+
 useEffect( () => {
 const token = User?.token
 
@@ -26,12 +35,6 @@ handleLogout()
 
     dispatch(setCurrnetUser(JSON.parse(localStorage.getItem('profile'))))
 }, [dispatch])
-
-const handleLogout = () => {
-    dispatch({type : 'LOGOUT'})
-navigate('/')
-dispatch(setCurrnetUser(null))
-}
 
 
 
